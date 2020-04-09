@@ -1,0 +1,7 @@
+{
+  "name": "alumbrado",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

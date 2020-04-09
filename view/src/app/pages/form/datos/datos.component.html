@@ -1,0 +1,74 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button color="primary" menu="primerMenu"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>ALUMBRADO PUBLICO VALLEDUPAR</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div>
+    <div class="container-login100">
+      <div class="wrap-login100">
+      <h3>Digite sus datos</h3>
+        <form [formGroup]="form" class="login100-form">
+          <mat-form-field class="w-100">
+            <input matInput formControlName="cedula" type="number"  (focusout) = "focusoutHandler($event)">
+            <mat-label>Identificación</mat-label>
+            <div *ngIf="cedula.invalid && (cedula.dirty || cedula.touched)">
+              <small *ngIf="cedula.errors.required" class="text-danger">Identificación Requerido</small>
+              <small *ngIf="cedula.errors.min || cedula.errors.max" class="text-danger">Identificación Invalida</small>
+            </div>
+          </mat-form-field>
+           <mat-form-field class="w-100">
+            <input matInput formControlName="nombre" type="text">
+            <mat-label>Nombre</mat-label>
+            <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+              <small *ngIf="nombre.errors.required" class="text-danger">Nombre Requerido</small>
+              <small *ngIf="nombre.errors.minlength" class="text-danger">Nombre debe ser al menos 3 carácteres de largo</small>
+              <small *ngIf="nombre.errors.maxlength" class="text-danger">Nombre Demasiado Largo</small>
+            </div>
+          </mat-form-field >    
+           <mat-form-field class="w-100">
+            <input matInput formControlName="apellido" type="text">
+            <mat-label>Apellido</mat-label>
+            <div *ngIf="apellido.invalid && (apellido.dirty || apellido.touched)">
+              <small *ngIf="apellido.errors.required" class="text-danger">Apellido Requerido</small>
+              <small *ngIf="apellido.errors.minlength" class="text-danger">Apellido debe ser al menos 3 carácteres de largo</small>
+              <small *ngIf="apellido.errors.maxlength" class="text-danger">Apellido Demasiado Largo</small>
+            </div>
+          </mat-form-field >
+           <mat-form-field class="w-100">
+            <input matInput formControlName="email" type="email">
+            <mat-label>Email</mat-label>
+            <div *ngIf="email.invalid && (email.dirty || email.touched)">
+              <small *ngIf="email.errors.required" class="text-danger">Email Requerido</small>
+              <small *ngIf="email.errors.email" class="text-danger">Email Invalido</small>
+            </div>
+          </mat-form-field >       
+          <mat-form-field class="w-100">
+            <input matInput formControlName="phone" type="number" name="phone">
+            <mat-label>Telefono</mat-label>
+            <div *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+              <small *ngIf="phone.errors.required" class="text-danger">Numero Requerido</small>
+              <small *ngIf="(phone.errors.min || phone.errors.max)" class="text-danger">Numero Invalido</small>
+            </div>
+            </mat-form-field>          
+            <ion-item class="tipo" style="margin-bottom: 5px;">
+            <ion-checkbox  formControlName="terminos" color="primary" slot="start" checked="false" (click)="openDialog()"></ion-checkbox>
+            <ion-label>Terminos y Condiciones</ion-label>
+          </ion-item>
+            <button 
+            class="mdl-button mdl-js-button btn-block mdl-button--raised mdl-button--colored btn" 
+            (click)="click()"  
+            [disabled]=!form.valid
+            >
+              Continuar
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+

@@ -1,0 +1,72 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-capitalize">ALUMBRADO PUBLICO VALLEDUPAR</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="container-login100">
+    <div class="wrap-login100">
+      <form [formGroup]="form" class="login100-form">
+        <mat-form-field class="w-100">
+          <mat-label>Tipo de Poste</mat-label>
+          <mat-select required formControlName="poste">
+            <mat-option *ngFor="let poste of postes" [value]="poste"
+              >{{ poste }}
+            </mat-option>
+          </mat-select>
+          <div *ngIf="poste.invalid && (poste.dirty || poste.touched)">
+            <small *ngIf="poste.errors.required" class="text-danger">Tipo de Poste Requerido</small>
+          </div>
+        </mat-form-field>
+        <mat-form-field class="w-100">
+          <mat-label>Tipo de Luminaria</mat-label>
+          <mat-select required formControlName="luminaria">
+            <mat-option
+              *ngFor="let luminaria of luminarias"
+              [value]="luminaria"
+              >{{ luminaria }}</mat-option
+            >
+          </mat-select>
+          <div *ngIf="luminaria.invalid && (luminaria.dirty || luminaria.touched)">
+            <small *ngIf="luminaria.errors.required" class="text-danger">Tipo de Poste Luminaria</small>
+          </div>
+        </mat-form-field>
+        <mat-form-field class="w-100">
+          <mat-label>Tipo de Problema</mat-label>
+          <mat-select required formControlName="problema">
+            <mat-option *ngFor="let problem of problemas" [value]="problem">{{
+              problem
+            }}</mat-option>
+          </mat-select>
+          <div *ngIf="problema.invalid && (problema.dirty || problema.touched)">
+            <small *ngIf="problema.errors.required" class="text-danger">Tipo de Problema Luminaria</small>
+          </div>
+        </mat-form-field>
+        <mat-form-field class="w-100">
+          <mat-label>Descripcion del Problema</mat-label>
+          <textarea
+            matInput
+            cdkTextareaAutosize
+            #autosize="cdkTextareaAutosize"
+            formControlName="issue"
+          ></textarea>
+          <div *ngIf="issue.invalid && (issue.dirty || issue.touched)">
+            <small *ngIf="issue.errors.required" class="text-danger">Descripcion Requerida</small>
+            <small *ngIf="issue.errors.minlength" class="text-danger">Descripcion Demasiada Corta</small>
+            <small *ngIf="issue.errors.maxlength" class="text-danger">Descripcion Demasiada Largo</small>
+          </div>
+        </mat-form-field>
+        <button
+          class="mdl-button mdl-js-button btn-block mdl-button--raised mdl-button--colored btn"
+          (click)="click()"
+          [disabled]=!form.valid
+        >
+          Reportar Daño
+        </button>
+      </form>
+    </div>
+  </div>
+</ion-content>

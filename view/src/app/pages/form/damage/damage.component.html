@@ -1,0 +1,118 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-capitalize">ALUMBRADO PUBLICO VALLEDUPAR</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div class="container-login100">
+    <div class="wrap-login100">
+      <form [formGroup]="form" class="login100-form">
+        <div class="row">
+          <div class="col-12">
+            <h6>Digite la direccion del daño</h6>
+          </div>
+          <div class="col-4">
+            <mat-form-field class="adress">
+              <mat-select required formControlName="tipo">
+                <mat-option *ngFor="let calle of calles" [value]="calle">
+                  {{ calle }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-3">
+            <mat-form-field class="number">
+              <input matInput formControlName="numero1" type="text" />
+            </mat-form-field>
+          </div>
+          <div class="col-1">
+            <button mat-raised-button class="none" disabled> 
+              <b class="numeral">#</b>
+          </button>
+          </div>
+          <div class="col-3">
+            <mat-form-field class="number">
+              <input matInput formControlName="numero2" type="text" />
+            </mat-form-field>
+          </div>
+          <div class="col-2">
+            <button mat-raised-button class="none" disabled> 
+              <b><mat-icon class="mat-icon" color="primary">remove</mat-icon></b>
+          </button>
+          </div>
+          <div class="col-10">
+            <mat-form-field class="w-100">
+              <input matInput formControlName="numero3" type="text" />
+            </mat-form-field>
+          </div>
+          <div class="col-12">
+            <ul>
+              <div *ngIf="tipo.invalid && (tipo.dirty || tipo.touched)">
+                <li>
+                  <small *ngIf="tipo.errors.required" class="text-danger"
+                    >Dirección Requerido</small
+                  >
+                </li>
+              </div>
+              <div
+                *ngIf="numero1.invalid && (numero1.dirty || numero1.touched)"
+              >
+                <li>
+                  <small *ngIf="numero1.errors.required" class="text-danger">Requerido</small>
+                </li>
+              </div>
+               <div
+                *ngIf="numero1.invalid && (numero1.dirty || numero1.touched)"
+              >
+                <li>
+                  <small *ngIf="numero1.invalid" class="text-danger">Invalido</small>
+                </li>
+              </div>
+            </ul>
+          </div>
+        </div>
+        <mat-form-field class="w-100">
+          <input matInput formControlName="referencia" type="text" />
+          <mat-label>Referencia</mat-label>
+          <div *ngIf="referencia.invalid && (referencia.dirty || referencia.touched)">
+            <small *ngIf="referencia.errors.required" class="text-danger">Referencia Requerido</small>
+            <small *ngIf="referencia.errors.min" class="text-danger">Numero Invalido</small>
+          </div>
+        </mat-form-field>
+        <mat-form-field class="w-100">
+          <mat-label>Municipio</mat-label>
+          <mat-select (selectionChange)="selectOpt($event)" required formControlName="municipio">
+            <mat-option *ngFor="let municipio of municipios" [value]="{codigo: municipio.CodigoMun, nombre:municipio.NombreMun}">{{
+              municipio.NombreMun
+            }}</mat-option>
+          </mat-select>
+          <div *ngIf="municipio.invalid && (municipio.dirty || municipio.touched)">
+            <small *ngIf="municipio.errors.required" class="text-danger">Municipio Requerido</small>
+          </div>
+        </mat-form-field>
+        <mat-form-field class="w-100" *ngIf="selected">
+          <mat-label>Barrio</mat-label>
+          <mat-select required formControlName="barrio">
+            <mat-option *ngFor="let barrio of barrios" [value]="barrio.NomBarrio">{{
+              barrio.NomBarrio
+            }}</mat-option>
+          </mat-select>
+          <div *ngIf="barrio.invalid && (barrio.dirty || barrio.touched)">
+            <small *ngIf="barrio.errors.required" class="text-danger">Barrio Requerido</small>
+          </div>
+        </mat-form-field>
+
+        <button
+          class="mdl-button mdl-js-button btn-block mdl-button--raised mdl-button--colored btn"
+          (click)="click()"
+          [disabled]=!form.valid
+        >
+          Continuar
+        </button>
+      </form>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,32 @@
+ion-content ion-toolbar {
+    --background: translucent;
+  }
+  .form{
+    border-radius: 7px;
+      padding: 30px;
+      background-color: white;
+  }
+  
+  .tipo{
+    margin-bottom: 15px;
+    --padding-start: 0px;
+    --background: white;
+  }
+  
+  .color{
+    z-index: 100;
+    --background: #60b4e4;
+    --offset-top: 0px;
+    --offset-bottom: 0px;
+  }
+  
+  .bt12{
+    margin-bottom: -12px;
+  }
+  
+  .btn{
+    display: block;
+    margin: auto;
+    margin-top: 2%;
+  }
+  
